@@ -1,0 +1,59 @@
+@import './../../Utils/Stylesheets/Constants.scss';
+
+.layout {
+  &__section {
+
+    &--wrapper {
+      display: inline-block;
+    }
+    
+    &--search {
+      background: #ffffff;
+    }
+    &--list {
+      background: #fafafa;
+    }
+  }
+}
+@media (min-width: $screen-size-small-375) {
+    .layout {
+      &__section {
+        padding: 0 20px;
+      }
+    }
+  }
+  
+  @media (min-width: $screen-size-medium-big-768) {
+    .layout {
+      &__section {
+        padding: 0 32px 0 32px;
+
+      }
+    }
+  }
+  
+  @media (min-width: $screen-size-big-1024) {
+    .layout {
+      &__section {
+        padding: 0;
+  
+        &--wrapper {
+          position: relative;
+          max-width: 1024px;
+          padding: 0 calc((100vw - 1024px) / 2) !important;
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  @media (min-width: $screen-size-very-big-1440) {
+    .layout {
+      &__section {
+        &--wrapper {
+          max-width: 1440px;
+          padding: 0 calc((100vw - 1440px) / 2) !important;
+        }
+      }
+    }
+  }

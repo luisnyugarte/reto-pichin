@@ -1,0 +1,27 @@
+.list-pokemons {
+    margin: 40px 0;
+
+    &__title {
+        color: #ee6b2f;
+        font-size: 40px;
+    }
+
+    &__results {
+        list-style: none;
+        padding: 0;
+        
+    }
+    &__paginator {
+
+        &--button {
+            background-color: #ee6b2f;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 0 16px;
+            cursor: pointer;
+        }
+    }
+}

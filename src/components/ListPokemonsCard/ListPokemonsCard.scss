@@ -1,0 +1,53 @@
+@import './../../Utils/Stylesheets/Constants.scss';
+
+.list-pokemons__card {
+        background-color: #ffffff;
+        box-sizing: border-box;
+        border: 1px solid #e5eaf2;
+        border-radius: 0.25rem;
+        box-shadow: 0 3px 6px rgb(0 0 0 / 5%);
+        display: inline-block;
+        margin: 16px;
+        padding: 16px;
+       
+        width: 100%;
+        @media (min-width: $screen-size-medium-big-768) {
+            width: calc((100% / 2) - 32px);
+          }
+          
+        @media (min-width: $screen-size-big-1024) {
+            width: calc((100% / 3) - 32px);
+        }
+
+        &:hover {
+            border: 1px solid #ee6b2f;
+            transform: scale(1.05);
+        }
+    
+        &--image {
+            box-sizing: border-box;
+            display: block;
+            width: 100%;
+        }
+
+        &--types {
+            display: flex;
+            flex-direction: row;
+            gap: 6px;
+            padding: 6px;
+            border-radius: 3px;
+            color: #ffffff;
+            justify-content: center;
+
+            &.green {
+                background-color: #9bcc50;
+            }
+            &.orange {
+                background-color: #ee6b2f;
+            }
+        }
+    &--actions {
+        display: flex;
+        justify-content: space-between;
+    }
+}
