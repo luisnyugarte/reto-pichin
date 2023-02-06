@@ -10,7 +10,7 @@
         margin: 16px;
         padding: 16px;
        
-        width: 100%;
+        max-width: 100%;
         @media (min-width: $screen-size-medium-big-768) {
             width: calc((100% / 2) - 32px);
           }
@@ -49,5 +49,8 @@
     &--actions {
         display: flex;
         justify-content: space-between;
+        svg {
+            cursor: pointer;
+        }
     }
 }
