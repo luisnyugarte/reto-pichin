@@ -71,7 +71,6 @@ const api = axios.create({
 
   // Push Pokemon of MOCKS
     export const pushPokemons = async (pokemon) => {
-      console.log(pokemon);
       getPokemonsJson.pokemons.unshift(
         {
           "name": pokemon.name,
