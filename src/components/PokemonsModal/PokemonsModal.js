@@ -10,7 +10,7 @@ import EditPokemonForm from '../EditPokemonsForm/EditPokemonsForm'
 // Others
 import { FaRegWindowClose } from 'react-icons/fa';
 
-const PokemonsModal = ({ isActive, children, handleClose, isOpen, closeModal }) => {
+const PokemonsModal = ({ isActive, children, handleClose, isOpen, closeModal, updatePokemonList }) => {
 
   return (
     <div 
@@ -29,7 +29,11 @@ const PokemonsModal = ({ isActive, children, handleClose, isOpen, closeModal }) 
               { children }
             </div>
             <div className={ "edit-modal__box--content-form" }>
-              <EditPokemonForm data={children.props.pokemon} />
+              <EditPokemonForm 
+                id={children.props}
+                handleClose={handleClose}
+                closeModal={closeModal} 
+                updatePokemonList={updatePokemonList}/>
             </div>
          </div>
         </div>

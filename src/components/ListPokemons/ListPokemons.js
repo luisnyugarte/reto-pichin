@@ -12,17 +12,14 @@ import "./ListPokemons.scss";
 // Hooks
 import { useModalWithData } from "../../hooks/useModal";
 
-// Api
-import { getPokemons, deletePokemons } from "./../../Api/Pokemons";
 
-const ListPokemons = ({searchResults}) => {
+const ListPokemons = ({searchResults, pokemonList, updatePokemonList}) => {
 
-  const handleGetPokemons = async () => {
-    const data = await getPokemons();
-    setDataList(searchResults ? searchResults : data.pokemons);
+  const handleSetPokemonsList = async () => {
+    setDataList(searchResults ? searchResults : pokemonList);
     setItems(
       searchResults ? searchResults
-      : [...data.pokemons].splice(0, itemsPerPage)
+      : [...pokemonList].splice(0, itemsPerPage)
     );
   };
 
@@ -36,15 +33,6 @@ const ListPokemons = ({searchResults}) => {
 
   const handleOpenModal = () => {
     setModalIsOpen(!modalIsOpen);
-  };
-  
-  const handleDelete = async (id) => {
-    const newList = await deletePokemons(id);
-
-    setDataList(newList);
-    setTimeout(() => {
-      setItems([...newList].splice(0, itemsPerPage));
-    }, 50);
   };
 
   const nextHandler = () => {
@@ -66,28 +54,27 @@ const ListPokemons = ({searchResults}) => {
   };
 
   const list = items?.map((item, index) => {
-    const types = item.types?.map((type, i) => {
-      return type?.type.name;
-    });
     return (
       <ListPokemonsCard
         id={item.id}
         src={item.image}
         name={item.name}
-        description={item.description}
-        types={types}
+        hp={item.hp}
+        type={item.type}
+        attack={item.attack}
+        defense={item.defense}
         customClass={"list-pokemons__card"}
         setModalData={setModalData}
         setIsModalOpened={setIsModalOpened}
         onAction={handleOpenModal}
-        deletePokemon={handleDelete}
+        updatePokemonList={updatePokemonList}
       />
     );
   });
 
   useEffect(() => {
-    handleGetPokemons();
-  }, [searchResults]);
+    handleSetPokemonsList();
+  }, [searchResults, pokemonList]);
 
   return (
     <div className={"list-pokemons"}>
@@ -113,8 +100,9 @@ const ListPokemons = ({searchResults}) => {
         closeModal={handleOpenModal}
         isActive={isModalOpened}
         handleClose={() => setIsModalOpened(false)}
+        updatePokemonList={updatePokemonList}
       >
-        <PokemonDetail pokemon={modalData} />
+        <PokemonDetail id={modalData} />
       </PokemonModal>
     </div>
   );

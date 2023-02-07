@@ -10,12 +10,14 @@ import { pushPokemons } from './../../Api/Pokemons';
 // Others
 import { FaRegWindowClose } from 'react-icons/fa';
 
-const CreatePokemon = ({ isActive, handleClose, isOpen, closeModal }) => {
+const CreatePokemon = ({ isActive, handleClose, isOpen, closeModal, updatePokemonList }) => {
 
 const [name, setName] = useState('');
 const [image, setImage] = useState('');
-const [description, setDescription] = useState('');
-const [types, setTypes] = useState('');
+const [type, setType] = useState('')
+const [attack, setAttack] = useState('');
+const [defense, setDefense] = useState('');
+const [hp, setHp] = useState('');
 
 const createHandler = async (e, values) => {
   e.preventDefault();
@@ -26,16 +28,23 @@ const handlerChangeName = (value) => {
   setName(value);
 } 
 
-const handlerChangeDescription = (value) => {
- setDescription(value) ;
-} 
-
 const handlerChangeImage = (value) => {
   setImage(value);
 } 
 
-const handlerChangeTypes = (value) => {
-  setTypes(value.split(',')) ;
+const handlerChangeType = (value) => {
+  setType(value) ;
+} 
+
+const handlerChangeAttack = (value) => {
+  setAttack(value);
+} 
+
+const handlerChangeDefense = (value) => {
+  setDefense(value);
+} 
+const handlerChangeHp = (value) => {
+  setHp(value);
 } 
 
   return (
@@ -69,22 +78,7 @@ const handlerChangeTypes = (value) => {
                       />
                       <label 
                         className={ "create-pokemon__form--label"}
-                        htmlFor="create-pokemon-types">Types separate by (,)</label>
-                      <input 
-                          className={ "create-pokemon__form--input"}
-                          type="text" 
-                          id="create-pokemon-types"
-                          placeholder='Types'
-                          name="create-pokemon-types"
-                          onChange={(e) => {
-                            handlerChangeTypes(e.target.value);
-                          }}
-                      />
-                    </div>
-                   <div>
-                    <label 
-                        className={ "create-pokemon__form--label"}
-                        htmlFor="create-pokemon-types">Image url</label>
+                        htmlFor="create-pokemon-type">Image url</label>
                       <input 
                           className={ "create-pokemon__form--input"}
                           type="text" 
@@ -97,15 +91,56 @@ const handlerChangeTypes = (value) => {
                       />
                       <label 
                         className={ "create-pokemon__form--label"}
-                        htmlFor="create-pokemon-types">Description</label>
+                        htmlFor="create-pokemon-attack">Attack</label>
                       <input 
                           className={ "create-pokemon__form--input"}
                           type="text" 
-                          id="create-pokemon-description"
-                          placeholder='description'
-                          name="create-pokemon-description"
+                          id="create-pokemon-attack"
+                          placeholder='Attack'
+                          name="create-pokemon-attack"
                           onChange={(e) => {
-                            handlerChangeDescription(e.target.value);
+                            handlerChangeAttack(Number(e.target.value));
+                          }}
+                      />
+                    </div>
+                   <div>
+                   <label 
+                        className={ "create-pokemon__form--label"}
+                        htmlFor="create-pokemon-defense">Defense</label>
+                      <input 
+                          className={ "create-pokemon__form--input"}
+                          type="text" 
+                          id="create-pokemon-defense"
+                          placeholder='Defense'
+                          name="create-pokemon-defense"
+                          onChange={(e) => {
+                            handlerChangeDefense(Number(e.target.value));
+                          }}
+                      />
+                    <label 
+                        className={ "create-pokemon__form--label"}
+                        htmlFor="create-pokemon-type">Type</label>
+                      <input 
+                          className={ "create-pokemon__form--input"}
+                          type="text" 
+                          id="create-pokemon-type"
+                          placeholder='Type'
+                          name="create-pokemon-type"
+                          onChange={(e) => {
+                            handlerChangeType(e.target.value);
+                          }}
+                      />
+                      <label 
+                        className={ "create-pokemon__form--label"}
+                        htmlFor="create-pokemon-hp">HP</label>
+                      <input 
+                          className={ "create-pokemon__form--input"}
+                          type="text" 
+                          id="create-pokemon-hp"
+                          placeholder='HP'
+                          name="create-pokemon-hp"
+                          onChange={(e) => {
+                            handlerChangeHp(Number(e.target.value));
                           }}
                       />
                    </div>
@@ -114,12 +149,19 @@ const handlerChangeTypes = (value) => {
                    onClick={(e) => {
                       createHandler(e, {
                         name, 
-                        description,
-                        types,
-                        image
+                        attack,
+                        defense,
+                        type,
+                        image,
+                        hp,
+                        "idAuthor": 1
                       });
                       closeModal();
-                      handleClose()
+                      handleClose();
+                      setTimeout(() => {
+                        updatePokemonList();
+                      }, 100);
+                     
                   }}
                   >Create</button>
           </div>

@@ -23,14 +23,14 @@
         box-shadow: 0 3px 6px rgb(0 0 0 / 5%);
         max-width: 90%;
         margin: 0 auto;
-        margin-top: 15%;
+        margin-top: 10%;
         position: relative;
         padding: 16px;
         height: 80%;
         overflow: scroll;
 
         @media (min-width: $screen-size-medium-big-768) {
-            max-height: 400px;
+            max-height: 70%;
         }
 
         &--close {

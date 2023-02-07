@@ -8,9 +8,9 @@ import CreatePokemon from '../CreatePokemon';
 import './SearchPokemons.scss';
 
 const SearchPokemons = ({
-  filterList
+  filterList, updatePokemonList
 }) => {
-  const [setIsModalOpened, isModalOpened, modalData, setModalData] =
+  const [setIsModalOpened, isModalOpened] =
   useModalWithData();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -45,6 +45,7 @@ const SearchPokemons = ({
         closeModal={handleOpenModal}
         isActive={isModalOpened}
         handleClose={() => setIsModalOpened(false)}
+        updatePokemonList={updatePokemonList}
       >
         <h1>hola</h1>
       </CreatePokemon>
